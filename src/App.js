@@ -6,6 +6,7 @@ function App() {
   const [fwStyle, setFwStyle] = useState("nowrap");
   const [jcStyle, setJcStyle] = useState("flex-start");
   const [aiStyle, setAiStyle] = useState("flex-start");
+  const [shapeCount, setShapeCount] = useState(3);
 
   let shapesStyle = {
     width: "400px",
@@ -17,6 +18,14 @@ function App() {
     justifyContent: jcStyle,
     alignItems: aiStyle,
   };
+
+  let shapes = [
+    { name: "shape1", face: "｡◕‿‿◕｡" },
+    { name: "shape2", face: "ಥ﹏ಥ" },
+    { name: "shape3", face: "ᵔᴥᵔ" },
+    { name: "shape4", face: "ಠ╭╮ಠ" },
+    { name: "shape5", face: "˘▾˘" },
+  ];
 
   const fdChange = (a) => {
     setFdStyle(a);
@@ -34,14 +43,19 @@ function App() {
     setAiStyle(a);
   };
 
+  const countChange = (a) => {
+    let change = shapeCount + a;
+    if (change > 0 && change <= 5) {
+      setShapeCount(shapeCount + a);
+    }
+  };
+
   return (
     <div>
       <div style={shapesStyle}>
-        <div className="shape shape1">｡◕‿‿◕｡</div>
-        <div className="shape shape2">ಥ﹏ಥ</div>
-        <div className="shape shape3">ᵔᴥᵔ</div>
-        <div className="shape shape4">ಠ╭╮ಠ</div>
-        <div className="shape shape5">˘▾˘</div>
+        {shapes.slice(0, shapeCount).map((e) => {
+          return <div className={"shape " + e.name}>{e.face}</div>;
+        })}
       </div>
 
       <div id="controls">
@@ -69,6 +83,9 @@ function App() {
         <button onClick={() => aiChange("center")}>center</button>
         <button onClick={() => aiChange("baseline")}>baseline</button>
         <button onClick={() => aiChange("stretch")}>stretch</button>
+        <p>+/-</p>
+        <button onClick={() => countChange(1)}>+</button>
+        <button onClick={() => countChange(-1)}>-</button>
       </div>
 
       <code>
