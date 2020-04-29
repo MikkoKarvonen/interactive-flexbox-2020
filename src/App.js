@@ -27,20 +27,47 @@ function App() {
     { name: "shape5", face: "˘▾˘" },
   ];
 
-  const fdChange = (a) => {
-    setFdStyle(a);
-  };
+  let controls = [
+    {
+      name: "Flex-direction",
+      param: "fdChange",
+      values: ["row", "row-reverse", "column", "column-reverse"],
+    },
+    {
+      name: "Flex-wrap",
+      param: "fwChange",
+      values: ["nowrap", "wrap", "wrap-reverse"],
+    },
+    {
+      name: "Justify-content",
+      param: "jcChange",
+      values: [
+        "flex-start",
+        "flex-end",
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+      ],
+    },
+    {
+      name: "Align-items",
+      param: "aiChange",
+      values: ["flex-start", "flex-end", "center", "baseline", "stretch"],
+    },
+  ];
 
-  const fwChange = (a) => {
-    setFwStyle(a);
-  };
-
-  const jcChange = (a) => {
-    setJcStyle(a);
-  };
-
-  const aiChange = (a) => {
-    setAiStyle(a);
+  const handleChange = (value, param) => {
+    let p = param.el.param;
+    if (p === "fdChange") {
+      setFdStyle(value.f);
+    } else if (p === "fwChange") {
+      setFwStyle(value.f);
+    } else if (p === "jcChange") {
+      setJcStyle(value.f);
+    } else if (p === "aiChange") {
+      setAiStyle(value.f);
+    }
   };
 
   const countChange = (a) => {
@@ -59,30 +86,20 @@ function App() {
       </div>
 
       <div id="controls">
-        <p>Flex-direction</p>
-        <button onClick={() => fdChange("row")}>row</button>
-        <button onClick={() => fdChange("row-reverse")}>row-reverse</button>
-        <button onClick={() => fdChange("column")}>column</button>
-        <button onClick={() => fdChange("column-reverse")}>
-          column-reverse
-        </button>
-        <p>Flex-wrap</p>
-        <button onClick={() => fwChange("nowrap")}>nowrap</button>
-        <button onClick={() => fwChange("wrap")}>wrap</button>
-        <button onClick={() => fwChange("wrap-reverse")}>wrap-reverse</button>
-        <p>Justify-content</p>
-        <button onClick={() => jcChange("flex-start")}>flex-start</button>
-        <button onClick={() => jcChange("flex-end")}>flex-end</button>
-        <button onClick={() => jcChange("center")}>center</button>
-        <button onClick={() => jcChange("space-between")}>space-between</button>
-        <button onClick={() => jcChange("space-around")}>space-around</button>
-        <button onClick={() => jcChange("space-evenly")}>space-evenly</button>
-        <p>Align-items</p>
-        <button onClick={() => aiChange("flex-start")}>flex-start</button>
-        <button onClick={() => aiChange("flex-end")}>flex-end</button>
-        <button onClick={() => aiChange("center")}>center</button>
-        <button onClick={() => aiChange("baseline")}>baseline</button>
-        <button onClick={() => aiChange("stretch")}>stretch</button>
+        {controls.map((el) => {
+          return (
+            <div>
+              <p>{el.name}</p>
+              {el.values.map((f) => {
+                return (
+                  <button onClick={() => handleChange({ f }, { el })}>
+                    {f}
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })}
         <p>+/-</p>
         <button onClick={() => countChange(1)}>+</button>
         <button onClick={() => countChange(-1)}>-</button>
