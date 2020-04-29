@@ -78,7 +78,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div class="base">
       <div style={shapesStyle}>
         {shapes.slice(0, shapeCount).map((e) => {
           return <div className={"shape " + e.name}>{e.face}</div>;
@@ -100,9 +100,11 @@ function App() {
             </div>
           );
         })}
-        <p>+/-</p>
-        <button onClick={() => countChange(1)}>+</button>
-        <button onClick={() => countChange(-1)}>-</button>
+        <div>
+          <p>+/-</p>
+          <button onClick={() => countChange(1)}>+</button>
+          <button onClick={() => countChange(-1)}>-</button>
+        </div>
       </div>
 
       <code>
