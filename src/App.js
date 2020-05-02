@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 function App() {
   const [fdStyle, setFdStyle] = useState("row");
@@ -90,20 +91,32 @@ function App() {
           return (
             <div>
               <p>{el.name}</p>
-              {el.values.map((f) => {
-                return (
-                  <button onClick={() => handleChange({ f }, { el })}>
-                    {f}
-                  </button>
-                );
-              })}
+              <ButtonGroup
+                orientation="vertical"
+                color="primary"
+                aria-label="vertical outlined primary button group"
+              >
+                {el.values.map((f) => {
+                  return (
+                    <Button onClick={() => handleChange({ f }, { el })}>
+                      {f}
+                    </Button>
+                  );
+                })}
+              </ButtonGroup>
             </div>
           );
         })}
         <div>
           <p>+/-</p>
-          <button onClick={() => countChange(1)}>+</button>
-          <button onClick={() => countChange(-1)}>-</button>
+          <ButtonGroup
+            orientation="vertical"
+            color="primary"
+            aria-label="vertical outlined primary button group"
+          >
+            <Button onClick={() => countChange(1)}>+</Button>
+            <Button onClick={() => countChange(-1)}>-</Button>
+          </ButtonGroup>
         </div>
       </div>
 
