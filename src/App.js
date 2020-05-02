@@ -56,6 +56,11 @@ function App() {
       param: "aiChange",
       values: ["flex-start", "flex-end", "center", "baseline", "stretch"],
     },
+    {
+      name: "+/-",
+      param: "shapeChange",
+      values: ["+", "-"],
+    },
   ];
 
   const handleChange = (value, param) => {
@@ -68,6 +73,8 @@ function App() {
       setJcStyle(value.f);
     } else if (p === "aiChange") {
       setAiStyle(value.f);
+    } else if (p === "shapeChange") {
+      countChange(value.f === "+" ? 1 : -1);
     }
   };
 
@@ -107,17 +114,6 @@ function App() {
             </div>
           );
         })}
-        <div>
-          <p>+/-</p>
-          <ButtonGroup
-            orientation="vertical"
-            color="primary"
-            aria-label="vertical outlined primary button group"
-          >
-            <Button onClick={() => countChange(1)}>+</Button>
-            <Button onClick={() => countChange(-1)}>-</Button>
-          </ButtonGroup>
-        </div>
       </div>
 
       <code>
