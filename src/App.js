@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Avatar, Button, ButtonGroup } from "@material-ui/core";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
 
 function App() {
   const [fdStyle, setFdStyle] = useState("row");
@@ -105,7 +107,8 @@ function App() {
               <ButtonGroup
                 orientation="vertical"
                 color="primary"
-                aria-label="vertical outlined primary button group"
+                aria-label="vertical contained primary button group"
+                variant="contained"
               >
                 {el.values.map((f) => {
                   return (
@@ -120,7 +123,7 @@ function App() {
         })}
       </div>
 
-      <code className="codeBlock">
+      <code className="codeBlock" data-lang="css">
         <div>
           display: <span>flex</span>;
         </div>
@@ -135,6 +138,22 @@ function App() {
           }
         })}
       </code>
+
+      <div className="credits">
+        <a
+          href="https://github.com/MikkoKarvonen/interactive-flexbox-2020"
+          target="_blank"
+        >
+          <Avatar className="github">
+            <GitHubIcon />
+          </Avatar>
+        </a>
+        <a href="https://textfac.es/" target="_blank">
+          <Avatar className="faces">
+            <SentimentVerySatisfiedIcon />
+          </Avatar>
+        </a>
+      </div>
     </div>
   );
 }
