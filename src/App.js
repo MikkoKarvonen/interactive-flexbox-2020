@@ -31,16 +31,19 @@ function App() {
   let controls = [
     {
       name: "Flex-direction",
+      hook: fdStyle,
       param: "fdChange",
       values: ["row", "row-reverse", "column", "column-reverse"],
     },
     {
       name: "Flex-wrap",
+      hook: fwStyle,
       param: "fwChange",
       values: ["nowrap", "wrap", "wrap-reverse"],
     },
     {
       name: "Justify-content",
+      hook: jcStyle,
       param: "jcChange",
       values: [
         "flex-start",
@@ -53,6 +56,7 @@ function App() {
     },
     {
       name: "Align-items",
+      hook: aiStyle,
       param: "aiChange",
       values: ["flex-start", "flex-end", "center", "baseline", "stretch"],
     },
@@ -86,7 +90,7 @@ function App() {
   };
 
   return (
-    <div class="base">
+    <div className="base">
       <div style={shapesStyle}>
         {shapes.slice(0, shapeCount).map((e) => {
           return <div className={"shape " + e.name}>{e.face}</div>;
@@ -116,26 +120,20 @@ function App() {
         })}
       </div>
 
-      <code>
+      <code className="codeBlock">
         <div>
           display: <span>flex</span>;
         </div>
-        <div>
-          flex-direction:
-          <span id="flex_direction_style">{fdStyle}</span>;
-        </div>
-        <div>
-          flex-wrap:
-          <span id="flex_wrap_style">{fwStyle}</span>;
-        </div>
-        <div>
-          justify-content:
-          <span id="justify_content_style">{jcStyle}</span>;
-        </div>
-        <div>
-          align-items:
-          <span id="align_items_style">{aiStyle}</span>;
-        </div>
+        {controls.map((e) => {
+          if (e.hook) {
+            return (
+              <div>
+                {e.name.toLowerCase()}:
+                <span id="align_items_style">{e.hook}</span>;
+              </div>
+            );
+          }
+        })}
       </code>
     </div>
   );
